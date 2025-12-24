@@ -2,3 +2,6 @@
 
 # test
 なたたたた
+
+teamcheese
+mysql -u root
