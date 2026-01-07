@@ -1,0 +1,250 @@
+/* グローバルスタイル */
+body {
+    font-family: 'Arial', sans-serif;
+    background: #1a3a52;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin: 0;
+    color: white;
+}
+
+/* コンテナ */
+.container {
+    background: #2d5a7b;
+    border-radius: 12px;
+    padding: 40px;
+    max-width: 900px;
+    width: 100%;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* 見出し */
+h1 {
+    color: white;
+    text-align: center;
+    margin: 0 0 30px 0;
+    font-size: 32px;
+}
+
+h2 {
+    color: #ffd700;
+    font-size: 18px;
+    margin: 20px 0 10px 0;
+}
+
+h3 {
+    color: #ffd700;
+    font-size: 14px;
+    margin: 15px 0 10px 0;
+}
+
+/* タイマーセクション */
+.timer-section {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    margin-bottom: 30px;
+    border-left: 4px solid #ffd700;
+}
+
+.timer {
+    font-size: 64px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 10px;
+    font-family: 'Courier New', monospace;
+}
+
+.timer.warning {
+    color: #ffa500;
+}
+
+.timer.danger {
+    color: #ff6b6b;
+}
+
+.timer-label {
+    font-size: 18px;
+    color: #ffd700;
+}
+
+/* テーマセクション */
+.theme-section {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+    border-left: 4px solid #ffd700;
+}
+
+.theme-label {
+    font-size: 16px;
+    color: #ffd700;
+    margin-bottom: 10px;
+}
+
+.theme-text {
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+}
+
+/* プレイヤーセクション */
+.players-section {
+    margin-bottom: 30px;
+}
+
+.players-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.players-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.player-item {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    border: 2px solid #ffd700;
+}
+
+.player-item.player {
+    border-color: white;
+}
+
+.player-name {
+    font-weight: bold;
+    color: white;
+    margin-bottom: 8px;
+}
+
+/* ボタングループ */
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+/* ボタン */
+.btn {
+    padding: 12px 30px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: opacity 0.2s, transform 0.2s;
+    background: #ffd700;
+    color: #1a3a52;
+}
+
+.btn-voting {
+    background: #ffd700;
+    color: #1a3a52;
+}
+
+.btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+.hidden-theme {
+    display: none;
+}
+
+/* フォーム要素 */
+input[type="text"],
+input[type="number"],
+select {
+    padding: 8px 12px;
+    border: 2px solid #ffd700;
+    border-radius: 5px;
+    font-size: 14px;
+    background: white;
+    color: #1a3a52;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+    outline: none;
+    border-color: white;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+}
+
+label {
+    color: white;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* メッセージ */
+.message {
+    background: rgba(255, 255, 255, 0.1);
+    border-left: 4px solid #ffd700;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+/* リンク */
+a {
+    color: #ffd700;
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 2px solid #ffd700;
+    transition: all 0.2s;
+}
+
+a:hover {
+    color: white;
+    border-bottom-color: white;
+}
+
+/* フォーム */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form>div {
+    display: flex;
+    flex-direction: column;
+}
+
+button[type="submit"] {
+    background: #ffd700;
+    color: #1a3a52;
+    padding: 12px 30px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+button[type="submit"]:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}

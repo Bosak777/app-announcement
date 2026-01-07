@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'word_wolf/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'word_wolf/style.css' %}">
+    <link rel="stylesheet" href="{% static 'word_wolf/player_wolf.css' %}">
+    <title>Word Wolf - 役割確認</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>プレイヤーの役割確認</h1>
+        <div class="players-grid">
+            {% for player in players %}
+            <div class="player-card" data-role="{{ player.role }}" data-index="{{ forloop.counter0 }}"
+                data-revealed="false">
+                <div class="player-name">{{ player.name }}</div>
+                <div id="role-{{ forloop.counter0 }}" class="player-role" aria-hidden="true"></div>
+                <button class="role-button" id="btn-{{ forloop.counter0 }}"
+                    onclick="revealRole({{ forloop.counter0 }})">役割を確認</button>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="button-group">
+            <button class="btn btn-back" onclick="goBack()">戻る</button>
+            <button class="btn btn-next" id="nextBtn" onclick="goToGame()">
+                <a href="{% url 'game_display' %}">次へ</a>
+        </div>
+    </div>
+
+    <script>
+        let activePlayerIndex = -1; // 現在アクティブなプレイヤーのインデックス
+
+        function revealRole(index) {
+            const card = document.querySelector(`.player-card[data-index='${index}']`);
+            if (!card) return;
+
+            const role = card.getAttribute('data-role');
+            const roleDiv = document.getElementById(`role-${index}`);
+            const btn = document.getElementById(`btn-${index}`);
+            const isRevealed = card.getAttribute('data-revealed') === 'true';
+
+            if (!roleDiv || !btn) return;
+
+            // 別のプレイヤーがアクティブな場合はスキップ
+            if (activePlayerIndex !== -1 && activePlayerIndex !== index) {
+                return;
+            }
+
+            if (!isRevealed) {
+                // 1回目：役割を表示、他のボタンを無効化
+                roleDiv.textContent = role === 'wolf' ? 'ウルフ' : '市民';
+                roleDiv.classList.add(role === 'wolf' ? 'wolf' : 'citizen');
+                roleDiv.setAttribute('aria-hidden', 'false');
+                card.setAttribute('data-revealed', 'true');
+                activePlayerIndex = index;
+
+                // 他のプレイヤーのボタンを無効化
+                disableOtherButtons(index);
+
+                // 2秒後に役割を隠す
+                setTimeout(() => {
+                    roleDiv.textContent = '';
+                    roleDiv.classList.remove('wolf', 'citizen');
+                    roleDiv.setAttribute('aria-hidden', 'true');
+                    btn.disabled = true; // ボタンを無効化
+                    activePlayerIndex = -1;
+                    enableOtherButtons();
+                }, 2000);
+            }
+        }
+
+        function disableOtherButtons(currentIndex) {
+            const buttons = document.querySelectorAll('.role-button');
+            buttons.forEach((btn, idx) => {
+                if (idx !== currentIndex) {
+                    btn.disabled = true;
+                }
+            });
+        }
+
+        function enableOtherButtons() {
+            const buttons = document.querySelectorAll('.role-button');
+            buttons.forEach((btn, idx) => {
+                const card = document.querySelector(`.player-card[data-index='${idx}']`);
+                // 既に確認済みでないボタンのみ有効化
+                if (card && card.getAttribute('data-revealed') === 'false') {
+                    btn.disabled = false;
+                }
+            });
+        }
+
+        function goBack() {
+            window.location.href = "{% url 'player_name' %}";
+        }
+
+    </script>
+
+</body>
+
+</html>

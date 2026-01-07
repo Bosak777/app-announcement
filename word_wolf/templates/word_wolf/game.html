@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'word_wolf/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'word_wolf/game.css' %}">
+    <title>Word Wolf - 議論</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>議論ターン</h1>
+
+        <div class="timer-section">
+            <div class="timer" id="timer">00:00</div>
+            <div class="timer-label">議論時間</div>
+        </div>
+
+        <div class="theme-section" id="themeSection">
+            <div class="theme-label">お題</div>
+            <div class="theme-text" id="themeText">テーマが表示されます</div>
+        </div>
+
+        <div class="players-section">
+            <div class="players-title">プレイヤー一覧</div>
+            <div class="players-list" id="playersList"></div>
+        </div>
+
+        <div class="button-group">
+            <button class="btn btn-voting" onclick="goToVoting()">
+                <a href="{% url 'voting' %}">投票へ進む</a>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // sessionStorage から文字列を取り出し、null チェックと数値変換をする
+        const minStr = sessionStorage.getItem('discussion_minutes');
+        const secStr = sessionStorage.getItem('discussion_seconds');
+        if (minStr === null || secStr === null) {
+            document.getElementById('timer').textContent = '時間未設定';
+            throw new Error('議論時間が正しく設定されていません');
+        }
+
+        const minutes = parseInt(minStr, 10);
+        const seconds = parseInt(secStr, 10);
+        if (Number.isNaN(minutes) || Number.isNaN(seconds)) {
+            document.getElementById('timer').textContent = '時間未設定';
+            throw new Error('議論時間が正しく設定されていません');
+        }
+
+        // 合計秒に変換
+        let totalSeconds = minutes * 60 + seconds;
+
+        // 表示更新関数
+        function updateTimer() {
+            const m = Math.floor(totalSeconds / 60);
+            const s = totalSeconds % 60;
+            document.getElementById('timer').textContent =
+                `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+            // 色の切り替え（任意）
+            const timerEl = document.getElementById('timer');
+            if (totalSeconds <= 10) {
+                timerEl.classList.add('danger');
+                timerEl.classList.remove('warning');
+            } else if (totalSeconds <= 30) {
+                timerEl.classList.add('warning');
+                timerEl.classList.remove('danger');
+            } else {
+                timerEl.classList.remove('warning');
+                timerEl.classList.remove('danger');
+            }
+        }
+
+        // 初期表示
+        updateTimer();
+
+        // １秒ごとに減らす
+        const timerId = setInterval(() => {
+            totalSeconds--;
+            if (totalSeconds < 0) {
+                clearInterval(timerId);
+                document.getElementById('timer').textContent = '終了！';
+                // ゲーム終了処理をここに書く
+                return;
+            }
+            updateTimer();
+        }, 1000);
+    </script>
+
+</body>
+
+</html>

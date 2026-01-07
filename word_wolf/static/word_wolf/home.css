@@ -1,0 +1,108 @@
+/* home.html styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background: #1a3a52;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin: 0;
+    color: white;
+}
+
+.container {
+    background: #2d5a7b;
+    border-radius: 12px;
+    padding: 40px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    color: white;
+    text-align: center;
+    margin: 0 0 30px 0;
+    font-size: 32px;
+}
+
+h2 {
+    color: #ffd700;
+    font-size: 18px;
+    margin: 20px 0 10px 0;
+}
+
+h3 {
+    color: #ffd700;
+    font-size: 14px;
+    margin: 15px 0 10px 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form>div {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+}
+
+input[type="number"],
+select {
+    padding: 10px 12px;
+    border: 2px solid #ffd700;
+    border-radius: 5px;
+    font-size: 14px;
+    background: white;
+    color: #1a3a52;
+}
+
+input[type="number"]:focus,
+select:focus {
+    outline: none;
+    border-color: white;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+}
+
+.count {
+    width: 100px;
+}
+
+#countdown {
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    margin: 15px 0;
+    background: rgba(255, 215, 0, 0.15);
+    border-left: 4px solid #ffd700;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+button[type="button"] {
+    background: #ffd700;
+    color: #1a3a52;
+    padding: 12px 30px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: opacity 0.2s, transform 0.2s;
+    margin-top: 20px;
+}
+
+button[type="button"]:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+opacity: 0.9;
+transform: translateY(-2px);

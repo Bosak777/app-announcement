@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'word_wolf/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'word_wolf/style.css' %}">
+    <link rel="stylesheet" href="{% static 'word_wolf/reveal.css' %}">
+    <title>お題の公開</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>全員のお題</h1>
+
+        <div class="players-list">
+            {% for p in players %}
+            <div class="player-item">
+                <div class="player-name">{{ p.name }}</div>
+                <div>役割: {% if p.role == 'wolf' %}人狼{% else %}市民{% endif %}</div>
+                <div>お題: {{ p.theme }}</div>
+                <div>得票数: {{ p.voted_count }}</div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div style="margin-top: 30px; text-align: center;">
+            <a href="{% url 'word_home' %}">ホームへ戻る</a>
+        </div>
+    </div>
+</body>
+
+</html>

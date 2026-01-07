@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'word_wolf/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'word_wolf/style.css' %}">
+    <link rel="stylesheet" href="{% static 'word_wolf/player_name.css' %}">
+    <title>Word Wolf - プレイヤー名入力</title>
+</head>
+
+<body>
+    <h1>ワードウルフ - プレイヤー名入力</h1>
+
+    <form method="POST" action="{% url 'player_name' %}">
+        {% csrf_token %}
+        <h2>プレイヤーの名前を入力してください</h2>
+        <div id="playerInputs"></div>
+        <input type="hidden" id="wolfcountInput" name="wolfcount" value="">
+        <input type="hidden" id="talkThemeInput" name="talk_theme" value="">
+        <button type="submit">次へ</button>
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const playercount = sessionStorage.getItem('playercount');
+            const wolfcount = sessionStorage.getItem('wolfcount');
+
+            // talk_theme を hidden input に設定
+            const talkThemeInput = document.getElementById('talkThemeInput');
+            const talkTheme = sessionStorage.getItem('talk_theme');
+            if (talkThemeInput && talkTheme) {
+                talkThemeInput.value = talkTheme;
+            }
+
+            if (!playercount) {
+                alert('プレイヤー人数が設定されていません');
+                window.location.href = "{% url 'word_home' %}";
+                return;
+            }
+
+            // wolfcountをhidden inputに設定
+            const wolfcountInput = document.getElementById('wolfcountInput');
+            if (wolfcountInput && wolfcount) {
+                wolfcountInput.value = wolfcount;
+            }
+
+            const playerInputsDiv = document.getElementById('playerInputs');
+            playerInputsDiv.innerHTML = '';
+
+            for (let i = 1; i <= parseInt(playercount); i++) {
+                const div = document.createElement('div');
+
+                const label = document.createElement('label');
+                label.textContent = `プレイヤー ${i}の名前: `;
+                label.style.display = 'block';
+
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.name = `player_${i}_name`;
+                input.placeholder = `Player ${i}`;
+                input.required = true;
+
+                div.appendChild(label);
+                div.appendChild(input);
+                playerInputsDiv.appendChild(div);
+            }
+        });
+    </script>
+
+</body>
+
+</html>

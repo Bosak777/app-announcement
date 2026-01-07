@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'word_wolf/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'word_wolf/style.css' %}">
+    <link rel="stylesheet" href="{% static 'word_wolf/voting.css' %}">
+    <title>投票画面</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>投票</h1>
+
+        {% if message %}
+        <div class="message">{{ message }}</div>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+            <div>
+                <label>あなたの名前:</label>
+                <select name="voter">
+                    {% for p in players %}
+                    <option value="{{ p.name }}">{{ p.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div>
+                <label>投票する相手:</label>
+                <select name="target">
+                    {% for p in players %}
+                    <option value="{{ p.name }}">{{ p.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-voting">投票する</button>
+            </div>
+        </form>
+
+        <div style="margin-top: 30px; text-align: center;">
+            <a href="{% url 'reveal' %}">結果を見る（全員のお題を表示）</a>
+        </div>
+    </div>
+</body>
+
+</html>
