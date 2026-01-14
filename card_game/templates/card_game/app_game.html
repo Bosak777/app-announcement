@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="{% static 'card_game/app.css' %}">
+    <link rel="stylesheet" href="{% static 'card_game/reset.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>神経衰弱</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🎮 神経衰弱</h1>
+        <p class="subtitle">難易度を選んでゲームを開始しよう！</p>
+
+        <div class="difficulty-selection">
+            <a href="{% url 'easy_game' %}">⭐ 簡単</a>
+            <a href="{% url 'normal_game' %}">⭐⭐ 普通</a>
+            <a href="{% url 'hard_game' %}">⭐⭐⭐ 難しい</a>
+        </div>
+
+        <div class="footer">
+            <p>同じ画像のペアを探してすべて揃えよう！</p>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+body {
+    background-color: #007700;
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+
+/* カード整列用コンテナ */
+.game-container {
+    display: grid;
+    grid-template-columns: repeat(6, 80px); /* ← 6列固定 */
+    gap: 20px;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+/* カード本体 */
+.card {
+    width: 80px;
+    height: 90px;
+    perspective: 1000px;
+}
+
+/* 回転部分 */
+.card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s;
+}
+
+.card.is-flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    backface-visibility: hidden;
+    top: 0;
+    left: 0;
+}
+
+.card-front {
+    transform: rotateY(180deg);
+}
+
+.card-back {
+    transform: rotateY(0deg);
+}
+
+/* 光るカード */
+.glow .card-front img {
+    animation: glowing 1s infinite alternate;
+    box-shadow:
+        0 0 20px rgba(255, 255, 0, 0.8),
+        inset 0 0 20px rgba(255, 255, 0, 0.5);
+}
+
+@keyframes glowing {
+    from {
+        box-shadow:
+            0 0 10px rgba(255, 255, 0, 0.5),
+            inset 0 0 10px rgba(255, 255, 0, 0.3);
+    }
+    to {
+        box-shadow:
+            0 0 30px rgba(255, 255, 0, 1),
+            inset 0 0 30px rgba(255, 255, 0, 0.7);
+    }
+}
+
+/* スマホ対応 */
+@media (max-width: 768px) {
+    .game-container {
+        grid-template-columns: repeat(3, 60px); /* スマホは3列 */
+        gap: 10px;
+    }
+
+    .card {
+        width: 60px;
+        height: 70px;
+    }
+
+
+
+    .card {
+        width: 60px;
+        height: 70px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+        margin: 10px 0;
+    }
+}

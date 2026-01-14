@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'card_game/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'card_game/game_clear.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ゲームクリア - 神経衰弱</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="celebration">
+            <h1>🎉 ゲームクリア！ 🎉</h1>
+
+            <div class="trophy">
+                <p class="trophy-emoji">🏆</p>
+            </div>
+
+            <div class="result-info">
+                <h2>難易度: <span class="difficulty">{{ difficulty }}</span></h2>
+                <h3>かかった時間: <span class="time-display">計測中...</span></h3>
+            </div>
+
+            <div class="message">
+                <p>すべてのカードを揃えました！</p>
+                <p>素晴らしい成績です！</p>
+            </div>
+
+            <div class="buttons">
+                <a href="{% url 'app_game' %}" class="btn btn-home">トップに戻る</a>
+                <a href="{% url 'easy_game' %}" class="btn btn-retry">もう一度プレイ</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ゲーム開始時刻をセッションストレージから取得
+        const startTime = sessionStorage.getItem('gameStartTime');
+
+        if (startTime) {
+            const endTime = Date.now();
+            const elapsedSeconds = Math.floor((endTime - parseInt(startTime)) / 1000);
+            const minutes = Math.floor(elapsedSeconds / 60);
+            const seconds = elapsedSeconds % 60;
+
+            const timeDisplay = document.querySelector('.time-display');
+            timeDisplay.textContent = `${minutes}分${seconds}秒`;
+
+            // セッションストレージをクリア
+            sessionStorage.removeItem('gameStartTime');
+        }
+
+        // 難易度を取得して表示
+        const difficulty = sessionStorage.getItem('gameDifficulty');
+        if (difficulty) {
+            const difficultyMap = {
+                'easy': '簡単',
+                'normal': '普通',
+                'hard': '難しい'
+            };
+            document.querySelector('.difficulty').textContent = difficultyMap[difficulty] || difficulty;
+        }
+    </script>
+</body>
+
+</html>
