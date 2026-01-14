@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'word_wolf',
+    'card_game',
 ]
 
 MIDDLEWARE = [

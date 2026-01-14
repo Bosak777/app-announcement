@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+</html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'word_wolf/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'word_wolf/home.css' %}">
+    <title>Word Wolf</title>
+</head>
+
+<body>
+    <h1>ワードウルフ</h1>
+
+    <form method="POST" action="{% url 'player_name' %}" id="setupForm">
+        {% csrf_token %}
+        <h2>プレイヤー人数を設定してください</h2>
+        <div>
+            <input type="number" id="playercount" name="playercount" class="count" placeholder="5" min="3" required>名
+        </div>
+        <h2>ウルフの人数を設定してください</h2>
+        <div>
+            <input type="number" name="wolfcount" class="count" placeholder="1" min="1" required>名
+        </div>
+        <h3>トークテーマ</h3>
+        <h2>お題のジャンルを設定してください</h2>
+        <select name="talk_theme">
+            <option value="1">スポーツ</option>
+            <option value="2">生活</option>
+            <option value="3">恋愛</option>
+            <option value="4">観光地</option>
+            <option value="5">食べ物・飲み物</option>
+            <option value="6">ランダム</option>
+        </select>
+        <h2>議論時間を分:秒で設定してください</h2>
+        <div>
+            <input type="number" id="minutes" name="discussion_minutes" class="count" placeholder="3" min="0" max="59"
+                value="3">分
+            <input type="number" id="seconds" name="discussion_seconds" class="count" placeholder="0" min="0" max="59"
+                value="0">秒
+        </div>
+
+        <h3>カウントダウン</h3>
+        <div id="countdown">
+            <span id="countdown-minutes">3</span>:<span id="countdown-seconds">00</span>
+        </div>
+
+        <button type="button" onclick="goToPlayerName()">次へ</button>
+    </form>
+
+
+
+    <script>
+        function goToPlayerName() {
+            const playercount = document.getElementById('playercount').value;
+            const wolfcountInput = document.querySelector('input[name="wolfcount"]');
+            const wolfcount = wolfcountInput ? wolfcountInput.value : '';
+            const minutesInput = document.getElementById('minutes');
+            const secondsInput = document.getElementById('seconds');
+            const minutes = minutesInput ? minutesInput.value : '0';
+            const seconds = secondsInput ? secondsInput.value : '0';
+
+            if (!playercount || playercount < 3) {
+                alert('3人以上のプレイヤー数を入力してください');
+                return;
+            }
+
+            if (!wolfcount || wolfcount < 1) {
+                alert('1人以上のウルフ数を入力してください');
+                return;
+            }
+
+            // プレイヤー人数、ウルフ人数、議論時間を sessionStorage に保存
+            sessionStorage.setItem('playercount', playercount);
+            sessionStorage.setItem('wolfcount', wolfcount);
+            sessionStorage.setItem('discussion_minutes', minutes);
+            sessionStorage.setItem('discussion_seconds', seconds);
+            // 選択したジャンルを保存
+            const talkTheme = document.querySelector('select[name="talk_theme"]').value;
+            sessionStorage.setItem('talk_theme', talkTheme);
+
+            // player_name.html に遷移
+            window.location.href = "{% url 'player_name' %}";
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const minutesInput = document.getElementById('minutes');
+            const secondsInput = document.getElementById('seconds');
+            const countdownMinutes = document.getElementById('countdown-minutes');
+            const countdownSeconds = document.getElementById('countdown-seconds');
+
+            function updateCountdown() {
+                const mins = parseInt(minutesInput.value) || 0;
+                const secs = parseInt(secondsInput.value) || 0;
+
+                countdownMinutes.textContent = mins;
+                countdownSeconds.textContent = String(secs).padStart(2, '0');
+            }
+
+            minutesInput.addEventListener('change', updateCountdown);
+            secondsInput.addEventListener('change', updateCountdown);
+            minutesInput.addEventListener('input', updateCountdown);
+            secondsInput.addEventListener('input', updateCountdown);
+
+            // 初期表示
+            updateCountdown();
+        });
+    </script>
+
+</body>
+
+</html>

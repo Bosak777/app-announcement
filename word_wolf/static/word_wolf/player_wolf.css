@@ -1,0 +1,166 @@
+/* player_wolf.html styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background: #1a3a52;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin: 0;
+    color: white;
+}
+
+.container {
+    background: #2d5a7b;
+    border-radius: 12px;
+    padding: 40px;
+    max-width: 800px;
+    width: 100%;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    color: white;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+.players-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.player-card {
+    background: rgba(255, 215, 0, 0.15);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    border: 2px solid #ffd700;
+}
+
+.player-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.player-role {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    min-height: 30px;
+    color: white;
+}
+
+.player-role.wolf {
+    color: #ff6b6b;
+}
+
+.player-role.citizen {
+    color: #4CAF50;
+}
+
+.role-button {
+    background: #ffd700;
+    color: #1a3a52;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.role-button:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+.role-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 12px 30px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.btn-back {
+    background: #999;
+    color: white;
+}
+
+.btn-next {
+    background: #ffd700;
+    color: #1a3a52;
+}
+
+.btn-next a {
+    color: #1a3a52;
+    text-decoration: none;
+}
+
+.btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+border: none;
+border-radius: 5px;
+cursor: pointer;
+font-weight: bold;
+transition: opacity 0.2s,
+transform 0.2s;
+}
+
+.btn-back {
+    background: #999;
+    color: white;
+}
+
+.btn-next {
+    background: linear-gradient(135deg, #1a3a52 0%, #2d5a7b 100%);
+    color: #fff9e6;
+}
+
+.btn-next a {
+    color: #fff9e6;
+    text-decoration: none;
+}
+
+.btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

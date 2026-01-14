@@ -1,0 +1,143 @@
+/* game.html specific styles */
+
+/* body背景 */
+body {
+    background: #1a3a52;
+    color: white;
+}
+
+.container {
+    background: #2d5a7b;
+}
+
+/* タイマーセクション */
+.timer-section {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    margin-bottom: 30px;
+    border-left: 4px solid #ffd700;
+}
+
+.timer {
+    font-size: 64px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 10px;
+    font-family: 'Courier New', monospace;
+}
+
+.timer.warning {
+    color: #ffa500;
+}
+
+.timer.danger {
+    color: #ff6b6b;
+}
+
+.timer-label {
+    font-size: 18px;
+    color: #ffd700;
+}
+
+/* テーマセクション */
+.theme-section {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+    border-left: 4px solid #ffd700;
+}
+
+.theme-label {
+    font-size: 16px;
+    color: #ffd700;
+    margin-bottom: 10px;
+}
+
+.theme-text {
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+}
+
+/* プレイヤーセクション */
+.players-section {
+    margin-bottom: 30px;
+}
+
+.players-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.players-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.player-item {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    border: 2px solid #ffd700;
+}
+
+.player-item.player {
+    border-color: white;
+}
+
+.player-name {
+    font-weight: bold;
+    color: white;
+    margin-bottom: 8px;
+}
+
+/* ボタングループ */
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+/* ボタン */
+.btn {
+    padding: 12px 30px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: opacity 0.2s, transform 0.2s;
+    background: #ffd700;
+    color: #1a3a52;
+}
+
+.btn-voting {
+    background: #ffd700;
+    color: #1a3a52;
+}
+
+.btn-voting a {
+    color: #1a3a52;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+.hidden-theme {
+    display: none;
+}
