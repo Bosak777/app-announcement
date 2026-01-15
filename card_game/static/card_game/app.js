@@ -38,7 +38,7 @@ function checkGameClear() {
     if (matchedCards.length === cards.length) {
         // すべてのカードが揃った
         setTimeout(() => {
-            window.location.href = "/app/game_clear/";
+            window.location.href = "/card_game/game_clear/";
         }, 500);
     }
 }
@@ -84,7 +84,7 @@ cards.forEach(card => {
 
             // リセット（ハイライトは消さずに保持）
             resetTurn();
-            
+
             // ゲーム完了判定
             checkGameClear();
         };
