@@ -11,25 +11,73 @@
 </head>
 
 <body>
-    <h1>神経衰弱・難しいモード</h1>
-    <div class="game-container">
-        {% for card in cards %}
-        <div class="card" data-card="{{card}}">
-            <div class="card-inner">
-                <div class="card-front">
-                    <img class="front" src="{% static 'cards/' %}{{ card }}">
+    <div class="page">
+        <header class="page-header">
+            <div class="title-group">
+                <p class="eyebrow">最大4人で遊べます</p>
+                <h1>神経衰弱・難しいモード</h1>
+            </div>
+            <a class="back-link" href="{% url 'app_game' %}">← ホームに戻る</a>
+        </header>
+
+        <section class="player-panel">
+            <div class="player-setup">
+                <h2>プレイヤー設定</h2>
+                <p class="setup-note">名前を入力してゲーム開始（最大4人）</p>
+                <form id="player-form">
+                    <div id="player-inputs" class="player-inputs">
+                        <input class="player-name-input" type="text" name="player-1" placeholder="プレイヤー1"
+                            aria-label="プレイヤー1の名前">
+                        <input class="player-name-input" type="text" name="player-2" placeholder="プレイヤー2"
+                            aria-label="プレイヤー2の名前">
+                    </div>
+                    <div class="player-actions">
+                        <button type="button" id="add-player" class="btn ghost">＋ プレイヤー追加</button>
+                        <button type="submit" class="btn primary">ゲーム開始</button>
+                    </div>
+                    <p class="hint">空欄は自動で名前が入ります</p>
+                </form>
+            </div>
+
+            <div class="scoreboard hidden" id="scoreboard">
+                <div class="scoreboard-header">
+                    <h2>スコア</h2>
+                    <p class="turn-message" id="turn-message">ゲーム開始を押してください</p>
                 </div>
-                <div class="card-back">
-                    <img class="back" src="{% static 'cards/card_back.png' %}">
+                <ul class="score-list" id="score-list"></ul>
+            </div>
+        </section>
+
+        <div class="game-container">
+            {% for card in cards %}
+            <div class="card" data-card="{{card}}">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img class="front" src="{% static 'cards/' %}{{ card }}">
+                    </div>
+                    <div class="card-back">
+                        <img class="back" src="{% static 'cards/card_back.png' %}">
+                    </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
-    <!-- js読み込み -->
-    <script src="{% static 'card_game/app.js' %}"></script>
-    <h2><a href="{% url 'app_game' %}">ホームに戻る</a></h2>
 
+    <div class="result-overlay hidden" id="result-overlay" aria-live="polite">
+        <div class="result-card">
+            <h2>結果発表</h2>
+            <p class="result-detail">難易度: <span id="result-difficulty">難しい</span></p>
+            <p class="result-detail">タイム: <span id="result-time">--</span></p>
+            <ol class="ranking-list" id="ranking-list"></ol>
+            <div class="result-actions">
+                <button id="retry-button" class="btn primary">もう一度プレイ</button>
+                <a href="{% url 'app_game' %}" class="btn ghost">ホームに戻る</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'card_game/app.js' %}"></script>
 </body>
 
 </html>

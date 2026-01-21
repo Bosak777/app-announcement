@@ -20,6 +20,9 @@ def easy_game(request):
     # 各かーどを2枚にして20枚にする
     cards = selected * 2
 
+    # シャッフルしる
+    random.shuffle(cards)
+
     return render(request, "card_game/easy_game.html", {"cards": cards})
 
 
