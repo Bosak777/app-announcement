@@ -29,15 +29,6 @@ SECRET_KEY = "django-insecure-r)&doat&!i+&00za1sd6h0x!%21!s8zx^oo0me82e6&nu@$1d&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-<<<<<<< HEAD
-ALLOWED_HOSTS = [
-    "0.0.0.0",
-    "localhost",
-    "127.0.0.1",
-    ]
-=======
->>>>>>> main
-
 ALLOWED_HOSTS = (os.environ.get("ALLOWED_HOSTS") or "").split(",")  # deploy for Railway
 CSRF_TRUSTED_ORIGINS = (os.environ.get("CSRF_TRUSTED_ORIGINS") or "").split(",")
 
