@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <title>バッティング練習 - タイトル</title>
+    <link rel="stylesheet" href="{% static 'baseball/game.css' %}">
+</head>
+
+<body class="bg">
+    <main class="container title-screen">
+        <h1 class="title big">バッティング練習</h1>
+        <p class="subtitle">ワンボタンで楽しめるシンプル練習ゲーム</p>
+        <a class="btn btn-play" href="{% url 'baseball:index' %}">PLAY</a>
+        <p class="credit">（JavaScript と CSS で演出を追加）</p>
+    </main>
+</body>
+
+</html>

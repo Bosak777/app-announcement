@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <title>選択式バッティング練習</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'baseball/game.css' %}">
+    <script defer src="{% static 'baseball/game.js' %}"></script>
+</head>
+
+<body class="bg">
+    <main class="container">
+        <header class="header">
+            <h1 class="title">選択式バッティング練習</h1>
+            <p class="subtitle">作戦を1つ選んでボタンを押してください。</p>
+        </header>
+
+        <section class="game-area">
+            <div class="scoreboard">
+                <div class="score">プレイヤー1: <strong>{{ score1 }}</strong></div>
+                <div class="score">プレイヤー2: <strong>{{ score2 }}</strong></div>
+                <div class="turn">現在の攻撃: <strong>プレイヤー{{ current }}</strong></div>
+                <div class="outs">アウト: <strong>{{ outs }}</strong></div>
+                <div class="count">ストライク: <strong>{{ strikes }}</strong></div>
+                <div class="count">ボール: <strong>{{ balls }}</strong></div>
+            </div>
+
+            <div class="bases">
+                <div class="base base-third {% if bases.2 %}occupied{% endif %}">3</div>
+                <div class="base base-second {% if bases.1 %}occupied{% endif %}">2</div>
+                <div class="base base-first {% if bases.0 %}occupied{% endif %}">1</div>
+            </div>
+            <div id="ball" class="ball" aria-hidden="true"></div>
+            <form id="actionForm" method="post">
+                {% csrf_token %}
+                <div class="buttons">
+                    <button class="btn btn-strong" type="submit" name="action" value="strong">強振</button>
+                    <button class="btn btn-meet" type="submit" name="action" value="meet">ミート</button>
+                    <button class="btn btn-bunt" type="submit" name="action" value="bunt">バント</button>
+                    <button class="btn btn-take" type="submit" name="action" value="take">見送る</button>
+                </div>
+            </form>
+
+            <div class="result-box">
+                {% if result %}
+                <div class="result"><strong>結果：</strong> <span id="resultText">{{ result }}</span></div>
+                {% else %}
+                <div class="result empty">まだプレイされていません。</div>
+                {% endif %}
+            </div>
+
+            <div class="controls">
+                <a class="btn btn-play" href="?new=1">リスタート</a>
+                {% if finished %}
+                <span class="note">試合終了。リスタートで再プレイできます。</span>
+                {% endif %}
+            </div>
+        </section>
+
+        <footer class="footer">
+            <small>（見た目と動きが改善されたシンプル版）</small>
+        </footer>
+    </main>
+</body>
+
+</html>
