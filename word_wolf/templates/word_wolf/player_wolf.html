@@ -7,20 +7,20 @@
     <link rel="stylesheet" href="{% static 'word_wolf/reset.css' %}">
     <link rel="stylesheet" href="{% static 'word_wolf/style.css' %}">
     <link rel="stylesheet" href="{% static 'word_wolf/player_wolf.css' %}">
-    <title>Word Wolf - 役割確認</title>
+    <title>Word Wolf - お題確認</title>
 </head>
 
 <body>
     <div class="container">
-        <h1>プレイヤーの役割確認</h1>
+        <h1>プレイヤーのお題確認</h1>
         <div class="players-grid">
             {% for player in players %}
-            <div class="player-card" data-role="{{ player.role }}" data-index="{{ forloop.counter0 }}"
-                data-revealed="false">
+            <div class="player-card" data-role="{{ player.role }}" data-theme="{{ player.theme }}"
+                data-index="{{ forloop.counter0 }}" data-revealed="false">
                 <div class="player-name">{{ player.name }}</div>
                 <div id="role-{{ forloop.counter0 }}" class="player-role" aria-hidden="true"></div>
                 <button class="role-button" id="btn-{{ forloop.counter0 }}"
-                    onclick="revealRole({{ forloop.counter0 }})">役割を確認</button>
+                    onclick="revealRole({{ forloop.counter0 }})">お題を確認</button>
             </div>
             {% endfor %}
         </div>
@@ -39,7 +39,7 @@
             const card = document.querySelector(`.player-card[data-index='${index}']`);
             if (!card) return;
 
-            const role = card.getAttribute('data-role');
+            const theme = card.getAttribute('data-theme');
             const roleDiv = document.getElementById(`role-${index}`);
             const btn = document.getElementById(`btn-${index}`);
             const isRevealed = card.getAttribute('data-revealed') === 'true';
@@ -52,9 +52,9 @@
             }
 
             if (!isRevealed) {
-                // 1回目：役割を表示、他のボタンを無効化
-                roleDiv.textContent = role === 'wolf' ? 'ウルフ' : '市民';
-                roleDiv.classList.add(role === 'wolf' ? 'wolf' : 'citizen');
+                // 1回目：お題を表示、他のボタンを無効化
+                roleDiv.textContent = theme ? `あなたのお題: ${theme}` : 'お題が取得できません';
+                roleDiv.classList.remove('wolf', 'citizen');
                 roleDiv.setAttribute('aria-hidden', 'false');
                 card.setAttribute('data-revealed', 'true');
                 activePlayerIndex = index;
@@ -62,7 +62,7 @@
                 // 他のプレイヤーのボタンを無効化
                 disableOtherButtons(index);
 
-                // 2秒後に役割を隠す
+                // 2秒後にお題を隠す
                 setTimeout(() => {
                     roleDiv.textContent = '';
                     roleDiv.classList.remove('wolf', 'citizen');

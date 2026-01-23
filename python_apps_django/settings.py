@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "word_wolf",
     "card_game",
+    "home",
 ]
 
 MIDDLEWARE = [
