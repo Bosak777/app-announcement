@@ -1,0 +1,204 @@
+body {
+    margin: 0;
+    /* ページの余白を削除 */
+    padding: 0;
+    height: 100vh;
+    /* 画面高さ */
+    background-image: url("/static/baseball/images/baseball_back.jpg");
+    background-size: cover;
+    /* 画面全体にフィット */
+    background-position: center;
+    /* 中央寄せ */
+    background-repeat: no-repeat;
+    /* 繰り返さない */
+}
+
+
+.banner {
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.banner .slider {
+    position: absolute;
+    width: 200px;
+    height: 250px;
+    top: 10%;
+    left: calc(50% - 100px);
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+    animation: autoRun 20s linear infinite;
+}
+
+@keyframes autoRun {
+    from {
+        transform: perspective(1000px) rotateX(-16deg) rotateY(0deg);
+    }
+
+    to {
+        transform: perspective(1000px) rotateX(-16deg) rotateY(360deg);
+    }
+}
+
+.banner .slider .item {
+    position: absolute;
+    inset: 0 0 0 0;
+    transform:
+        rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(550px);
+}
+
+.banner .slider .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.banner .content {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(1400px, 100vw);
+    padding-bottom: 100px;
+
+    display: flex;
+    flex-direction: column;
+    /* 縦方向に並べる */
+    align-items: center;
+    /* 中央揃え */
+    gap: 20px;
+    /* 要素間の余白 */
+}
+
+.neon-title span:nth-child(odd) {
+    color: white;
+    -webkit-text-stroke: 1px black;
+    text-shadow: 0 0 5px white, 0 0 10px white;
+}
+
+.neon-title span:nth-child(even) {
+    color: red;
+    -webkit-text-stroke: 1px black;
+    text-shadow: 0 0 5px red, 0 0 10px red;
+}
+
+/* h1 全体のスタイル */
+.neon-title {
+    font-size: clamp(4rem, 15vw, 12rem);
+    font-family: 'Bangers', cursive;
+    line-height: 1em;
+    text-align: center;
+}
+
+
+/* START ボタン */
+.banner .content .btn {
+    display: inline-block;
+    font-family: 'Bangers', cursive;
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    padding: 15px 40px;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(45deg, #FF0000, #FFA500);
+    /* 赤→オレンジ */
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 0 10px #FF0000, 0 0 20px #FFA500;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* ホバー時の光らせ効果 */
+.banner .content .btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #FF0000, 0 0 40px #FFA500;
+}
+
+/* h1: neon-title */
+.neon-title {
+    font-size: clamp(4rem, 15vw, 12rem);
+    font-family: 'Bangers', cursive;
+    line-height: 1em;
+    display: flex;
+    /* span を横並びに */
+    justify-content: center;
+    /* 横方向中央揃え */
+}
+
+.neon-title span:nth-child(odd) {
+    color: white;
+    -webkit-text-stroke: 1px black;
+    text-shadow: 0 0 5px white, 0 0 10px white;
+}
+
+.neon-title span:nth-child(even) {
+    color: red;
+    -webkit-text-stroke: 1px black;
+    text-shadow: 0 0 5px red, 0 0 10px red;
+}
+
+
+@media screen and (max-width: 768px) {
+
+    /* content の位置を少し上に */
+    .banner .content {
+        bottom: 200px;
+        /* 下からの距離を200pxに */
+        padding-bottom: 50px;
+        /* 元の余白も調整 */
+        gap: 15px;
+        /* h1 とボタンの間隔をスマホ向けに縮小 */
+    }
+
+    /* sliderの縮小 */
+    .banner .slider {
+        width: 120px;
+        height: 150px;
+        left: calc(50% - 60px);
+        transform: perspective(600px);
+    }
+
+    .banner .slider .item {
+        transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(300px);
+    }
+
+    /* h1 neon-titleのサイズ調整 */
+    .neon-title {
+        font-size: clamp(3rem, 12vw, 8rem);
+        flex-wrap: wrap;
+    }
+
+    /* STARTボタンサイズ調整 */
+    .banner .content .btn {
+        font-size: clamp(1rem, 4vw, 1.5rem);
+        padding: 10px 25px;
+        border-radius: 8px;
+    }
+
+    .banner {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        /* 子をflexで配置 */
+        justify-content: center;
+        /* 横方向中央揃え */
+        align-items: center;
+        /* 縦方向中央揃え */
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* content は flex column */
+    .banner .content {
+        display: flex;
+        flex-direction: column;
+        /* h1 とボタンを縦に並べる */
+        align-items: center;
+        /* 横方向中央揃え */
+        gap: 20px;
+        /* h1 とボタンの間隔 */
+    }
+}

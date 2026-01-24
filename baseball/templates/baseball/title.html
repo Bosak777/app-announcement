@@ -5,16 +5,39 @@
 <head>
     <meta charset="utf-8">
     <title>バッティング練習 - タイトル</title>
-    <link rel="stylesheet" href="{% static 'baseball/game.css' %}">
+    <link rel="stylesheet" href="{% static 'baseball/game_title.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
 </head>
 
-<body class="bg">
-    <main class="container title-screen">
-        <h1 class="title big">バッティング練習</h1>
-        <p class="subtitle">ワンボタンで楽しめるシンプル練習ゲーム</p>
-        <a class="btn btn-play" href="{% url 'baseball:index' %}">PLAY</a>
-        <p class="credit">（JavaScript と CSS で演出を追加）</p>
-    </main>
+<body>
+    <div class="banner">
+        <div class="slider" style="--quantity: 10">
+            <div class="item" style="--position: 1"><img src="{% static 'baseball/images/baseball_1.jpg' %}"></div>
+            <div class="item" style="--position: 2"><img src="{% static 'baseball/images/baseball_2.jpg' %}"></div>
+            <div class="item" style="--position: 3"><img src="{% static 'baseball/images/baseball_3.jpg' %}"></div>
+            <div class="item" style="--position: 4"><img src="{% static 'baseball/images/baseball_4.jpg' %}"></div>
+            <div class="item" style="--position: 5"><img src="{% static 'baseball/images/baseball_5.jpg' %}"></div>
+            <div class="item" style="--position: 6"><img src="{% static 'baseball/images/baseball_6.jpg' %}"></div>
+            <div class="item" style="--position: 7"><img src="{% static 'baseball/images/baseball_7.jpg' %}"></div>
+            <div class="item" style="--position: 8"><img src="{% static 'baseball/images/baseball_8.jpg' %}"></div>
+            <div class="item" style="--position: 9"><img src="{% static 'baseball/images/baseball_9.jpg' %}"></div>
+            <div class="item" style="--position: 10"><img src="{% static 'baseball/images/baseball_10.jpg' %}"></div>
+
+        </div>
+        <div class="content">
+            <h1 class="neon-title">
+                <span>B</span><span>A</span><span>S</span><span>E</span>
+                <span>B</span><span>A</span><span>L</span><span>L</span>
+                <span>G</span><span>A</span><span>M</span><span>E</span>
+            </h1>
+
+            <div class="author">
+                <a href="{% url 'baseball:index' %}" class="btn">
+                    START GAME
+                </a>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
