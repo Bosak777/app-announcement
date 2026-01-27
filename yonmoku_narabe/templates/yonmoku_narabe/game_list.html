@@ -25,7 +25,8 @@
                     {% endif %}
                     <p>更新: {{ game.updated_at|date:"Y-m-d H:i" }}</p>
                     <a href="{% url 'yonmoku_narabe:yonmoku_detail' game.id %}" class="btn">プレイ</a>
-                    <form action="{% url 'yonmoku_narabe:yonmoku_delete' game.id %}" method="post" style="margin-top:8px;">
+                    <form action="{% url 'yonmoku_narabe:yonmoku_delete' game.id %}" method="post"
+                        style="margin-top:8px;">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-secondary"
                             onclick="return confirm('ゲーム #{{ game.id }} を削除します。よろしいですか？');">この試合を削除</button>
