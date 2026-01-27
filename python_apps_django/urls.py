@@ -21,5 +21,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('word_wolf/', include('word_wolf.urls')),
     path('card_game/', include('card_game.urls')),
+<<<<<<< HEAD
     path('', include("home.urls")),
+=======
+    path('yonmoku_narabe/', include('yonmoku_narabe.urls')),
+>>>>>>> yonmoku_game
 ]
