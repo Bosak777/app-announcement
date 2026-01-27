@@ -29,8 +29,13 @@ SECRET_KEY = "django-insecure-r)&doat&!i+&00za1sd6h0x!%21!s8zx^oo0me82e6&nu@$1d&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = (os.environ.get("ALLOWED_HOSTS") or "").split(",")  # deploy for Railway
-CSRF_TRUSTED_ORIGINS = (os.environ.get("CSRF_TRUSTED_ORIGINS") or "").split(",")
+ALLOWED_HOSTS = (
+    (os.environ.get("ALLOWED_HOSTS") or "").split(",")
+    if os.environ.get("ALLOWED_HOSTS")
+    else []
+)  # deploy for Railway
+_csrf_origins = os.environ.get("CSRF_TRUSTED_ORIGINS") or ""
+CSRF_TRUSTED_ORIGINS = [origin for origin in _csrf_origins.split(",") if origin]
 
 # Application definition
 
@@ -102,16 +107,25 @@ DATABASE_USER = os.environ.get("DB_USER")
 DATABASE_PASSWORD = os.environ.get("DB_PASSWORD")
 DATABASE_PORT = os.environ.get("DB_PORT") or "3306"
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": DATABASE_NAME,
-        "USER": DATABASE_USER,
-        "PASSWORD": DATABASE_PASSWORD,
-        "HOST": DATABASE_HOST,
-        "PORT": DATABASE_PORT,
+# Use SQLite for development if MySQL is not configured
+if DATABASE_HOST:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.mysql",
+            "NAME": DATABASE_NAME,
+            "USER": DATABASE_USER,
+            "PASSWORD": DATABASE_PASSWORD,
+            "HOST": DATABASE_HOST,
+            "PORT": DATABASE_PORT,
+        }
     }
-}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
 
 
 # Password validation

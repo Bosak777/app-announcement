@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>四目並べ - ゲーム一覧</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'yonmoku_narabe/style.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>四目並べ</h1>
+        <div class="game-list">
+            <h2>ゲーム一覧</h2>
+            {% if games %}
+            <div class="games-grid">
+                {% for game in games %}
+                <div class="game-card">
+                    <h3>ゲーム #{{ game.id }}</h3>
+                    <p>ステータス: <span class="status {{ game.status }}">{{ game.get_status_display }}</span></p>
+                    {% if game.winner %}
+                    <p>優勝者: <span class="winner">{{ game.winner }}</span></p>
+                    {% endif %}
+                    <p>更新: {{ game.updated_at|date:"Y-m-d H:i" }}</p>
+                    <a href="{% url 'yonmoku_detail' game.id %}" class="btn">プレイ</a>
+                    <form action="{% url 'yonmoku_delete' game.id %}" method="post" style="margin-top:8px;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-secondary"
+                            onclick="return confirm('ゲーム #{{ game.id }} を削除します。よろしいですか？');">この試合を削除</button>
+                    </form>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p>ゲームがまだありません。</p>
+            {% endif %}
+        </div>
+
+        <div class="create-game">
+            <a href="{% url 'yonmoku_create' %}" class="btn btn-primary">新しいゲームを始める</a>
+            <form action="{% url 'yonmoku_delete_all' %}" method="post" style="margin-top:12px;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-secondary"
+                    onclick="return confirm('全ての試合履歴を削除します。よろしいですか？');">試合履歴を全て消す</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

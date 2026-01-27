@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ホームページ</title>
+    <link rel="stylesheet" href="{% static 'home/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'home/home.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>ミニゲーム集</h1>
+        <ul>
+            <li>
+                <a href="{% url 'app_game' %}">
+                    <img src="{% static 'home/sinkei.png' %}" alt="神経衰弱" class="game-image">
+                    <span>神経衰弱</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'word_home' %}">
+                    <img src="{% static 'home/word.png' %}" alt="ワードウルフ" class="game-image">
+                    <span>ワードウルフ</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>

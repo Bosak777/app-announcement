@@ -1,0 +1,61 @@
+body {
+    background-image: url('/static/home/wood.jpg');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+}
+
+h1 {
+    color: #fff;
+    text-align: center;
+    font-size: 100px;
+    margin-bottom: 50px;
+}
+
+li img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+}
+
+ul li {
+    position: relative;
+}
+
+ul li a {
+    display: flex;
+    width: 270px;
+    height: 170px;
+    background: #ffd700;
+    padding: 20px;
+    text-decoration: none;
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    transform: rotate(-3deg);
+    transition: all 0.3s;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+ul li:hover {
+    transform: rotate(0deg) scale(1.1);
+    box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.4);
+}
