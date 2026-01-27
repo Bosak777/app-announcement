@@ -27,7 +27,8 @@
                     <a href="{% url 'yonmoku_detail' game.id %}" class="btn">プレイ</a>
                     <form action="{% url 'yonmoku_delete' game.id %}" method="post" style="margin-top:8px;">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-secondary" onclick="return confirm('ゲーム #{{ game.id }} を削除します。よろしいですか？');">この試合を削除</button>
+                        <button type="submit" class="btn btn-secondary"
+                            onclick="return confirm('ゲーム #{{ game.id }} を削除します。よろしいですか？');">この試合を削除</button>
                     </form>
                 </div>
                 {% endfor %}
