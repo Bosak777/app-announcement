@@ -23,4 +23,5 @@ urlpatterns = [
     path('word_wolf/', include('word_wolf.urls')),
     path('card_game/', include('card_game.urls')),
     path('baseball/', include('baseball.urls')),
+    path('yonmoku_narabe/', include('yonmoku_narabe.urls')),
 ]
