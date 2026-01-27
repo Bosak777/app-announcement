@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "card_game",
     "baseball",
     "yonmoku_narabe",
+    "home",
 ]
 
 MIDDLEWARE = [

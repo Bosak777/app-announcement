@@ -26,6 +26,18 @@
                     <span>ワードウルフ</span>
                 </a>
             </li>
+            <li>
+                <a href="{% url 'baseball:title' %}">
+                    <img src="{% static 'home/baseball.png' %}" alt="バッティング練習" class="game-image">
+                    <span>バッティング練習</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'yonmoku_game_list:' %}">
+                    <img src="{% static 'home/yonmoku.png' %}" alt="四目並べ" class="game-image">
+                    <span>四目並べ</span>
+                </a>
+            </li>
         </ul>
     </div>
 </body>
