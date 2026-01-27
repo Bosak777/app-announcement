@@ -24,8 +24,5 @@ urlpatterns = [
     path("card_game/", include("card_game.urls")),
     path("baseball/", include("baseball.urls")),
     path("yonmoku_narabe/", include("yonmoku_narabe.urls")),
-<<<<<<< HEAD
-=======
     path("home/", include("home.urls")),
->>>>>>> c8505b3 (home変更)
 ]
