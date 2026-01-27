@@ -24,8 +24,8 @@
                     <p>優勝者: <span class="winner">{{ game.winner }}</span></p>
                     {% endif %}
                     <p>更新: {{ game.updated_at|date:"Y-m-d H:i" }}</p>
-                    <a href="{% url 'yonmoku_detail' game.id %}" class="btn">プレイ</a>
-                    <form action="{% url 'yonmoku_delete' game.id %}" method="post" style="margin-top:8px;">
+                    <a href="{% url 'yonmoku_narabe:yonmoku_detail' game.id %}" class="btn">プレイ</a>
+                    <form action="{% url 'yonmoku_narabe:yonmoku_delete' game.id %}" method="post" style="margin-top:8px;">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-secondary"
                             onclick="return confirm('ゲーム #{{ game.id }} を削除します。よろしいですか？');">この試合を削除</button>
@@ -39,8 +39,8 @@
         </div>
 
         <div class="create-game">
-            <a href="{% url 'yonmoku_create' %}" class="btn btn-primary">新しいゲームを始める</a>
-            <form action="{% url 'yonmoku_delete_all' %}" method="post" style="margin-top:12px;">
+            <a href="{% url 'yonmoku_narabe:yonmoku_create' %}" class="btn btn-primary">新しいゲームを始める</a>
+            <form action="{% url 'yonmoku_narabe:yonmoku_delete_all' %}" method="post" style="margin-top:12px;">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-secondary"
                     onclick="return confirm('全ての試合履歴を削除します。よろしいですか？');">試合履歴を全て消す</button>
