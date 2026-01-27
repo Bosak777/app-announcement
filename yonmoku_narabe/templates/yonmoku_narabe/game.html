@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>四目並べ - ゲーム</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'yonmoku_narabe/style.css' %}">
+    <link rel="stylesheet" href="{% static 'yonmoku_narabe/game.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>四目並べ</h1>
+            <a href="{% url 'yonmoku_list' %}" class="btn btn-secondary">ゲーム一覧に戻る</a>
+        </div>
+
+        <div class="game-info">
+            <div class="status-bar">
+                <div class="game-status">
+                    <p>ゲームID: <span id="gameId">{{ game.id }}</span></p>
+                    <p>ステータス: <span id="gameStatus" class="status {{ game.status }}">{{ game.get_status_display
+                            }}</span></p>
+                </div>
+                <div class="player-info">
+                    <p>現在のターン: <span id="currentPlayer" class="player-badge" data-player="{{ game.current_player }}">{{
+                            game.current_player }}</span></p>
+                    <p id="winnerInfo" style="display: none;">優勝者: <span id="winner"></span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-board-container">
+            <div id="gameBoard" class="game-board">
+                <!-- ボードはJavaScriptで生成される -->
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="resetBtn" class="btn btn-primary">ゲームをリセット</button>
+            <a href="{% url 'yonmoku_list' %}" class="btn btn-secondary">新しいゲーム</a>
+        </div>
+    </div>
+
+    <script>
+        const gameId = {{ game.id }};
+        const initialBoard = {{ board_json| safe }};
+        const initialStatus = "{{ game.status }}";
+        const initialCurrentPlayer = "{{ game.current_player }}";
+        const initialWinner = "{{ game.winner }}";
+
+        // デバッグ用ログ
+        console.log('初期ボード:', initialBoard);
+    </script>
+    <script src="{% static 'yonmoku_narabe/game.js' %}"></script>
+</body>
+
+</html>
