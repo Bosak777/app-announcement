@@ -29,11 +29,12 @@
             <li>
                 <a href="{% url 'baseball:title' %}">
                     <img src="{% static 'home/baseball.png' %}" alt="バッティング練習" class="game-image">
-                    <span>バッティング練習</span>
+                    <span>野球ゲーム</span>
                 </a>
             </li>
             <li>
-                <a href="{% url 'yonmoku_narabe:yonmoku_list' %}">
+                <a href="{% url 'home:yonmoku_title' %}" class="btn">
+
                     <img src="{% static 'home/yonmoku.png' %}" alt="四目並べ" class="game-image">
                     <span>四目並べ</span>
                 </a>
