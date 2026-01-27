@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "word_wolf",
     "card_game",
     "baseball",
+    "yonmoku_narabe",
 ]
 
 MIDDLEWARE = [
