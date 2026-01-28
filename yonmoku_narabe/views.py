@@ -37,7 +37,7 @@ def game_detail(request, game_id):
 def delete_all_games(request):
     """ゲーム履歴を全削除して一覧に戻す"""
     Game.objects.all().delete()
-    return redirect("yonmoku_list")
+    return redirect("yonmoku_narabe:yonmoku_list")
 
 
 @require_http_methods(["POST"])
@@ -45,7 +45,7 @@ def delete_game(request, game_id):
     """単一ゲームを削除して一覧に戻す"""
     game = get_object_or_404(Game, id=game_id)
     game.delete()
-    return redirect("yonmoku_list")
+    return redirect("yonmoku_narabe:yonmoku_list")
 
 
 @require_http_methods(["POST"])
