@@ -104,5 +104,26 @@ button[type="button"]:hover {
     transform: translateY(-2px);
 }
 
-opacity: 0.9;
-transform: translateY(-2px);
+.home-button {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.home-button a {
+    display: inline-block;
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #000;
+    background-color: #ffd700;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.home-button a:hover {
+    background-color: #e6c200;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
